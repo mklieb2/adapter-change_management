@@ -138,7 +138,6 @@ constructUri(serviceNowTable, query = null) {
     } else if (this.isHibernating(response) == true) {
       callbackError = 'Service Now instance is hibernating';
       callback(callbackData, callbackError);      
-      // console.error(callbackError);
     } else {
       callbackData = response;
       callback(callbackData, callbackError);
@@ -175,18 +174,13 @@ constructUri(serviceNowTable, query = null) {
    * hardcoded values.
    */
   const requestOptions = {
-    // method: 'POST',
     method:  callOptions.method,
     auth: {
-      // user: options.username,
       user: callOptions.username,
       pass: callOptions.password,
     },
     baseUrl: callOptions.url,
-    uri, // works for get 
-    // uri: `/api/now/table/change_request` 
-    // uri: `/api/now/table/change_request?sysparm_limit=1`
-    // uri: `/api/now/table/change_request/${serviceNowTable}`
+    uri,
   };
   request(requestOptions, (error, response, body) => {
     this.processRequestResults(error, response, body, (processedResults, processedError) => callback(processedResults, processedError));
